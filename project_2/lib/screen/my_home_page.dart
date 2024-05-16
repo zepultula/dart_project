@@ -17,12 +17,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _counterDecrement() {
     setState(() {
-      if(_counter < 1){
+      if (_counter < 1) {
         _counter = 0;
-      }else{
+      } else {
         _counter--; //? _count = _counter - 1
       }
-      
     });
   }
 
@@ -30,20 +29,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Increment counter"),
+        title: const Text("My Number counter"),
       ),
       body: Center(
         //child: Text("นับไปแล้ว $_counter ครั้ง"),
         child: Column(
           children: [
-            Text("นับไปแล้ว $_counter ครั้ง"),
-            ElevatedButton(
-              onPressed: _counterIncrement,
-              child: const Icon(Icons.add),
-            ),
-            ElevatedButton(
-              onPressed: _counterDecrement,
-              child: const Icon(Icons.remove),
+            Text("นับไปแล้ว $_counter ครั้ง", style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blue)),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: _counterIncrement,
+                  child: const Icon(Icons.add),
+                ),
+                
+                ElevatedButton(
+                  onPressed: _counterDecrement,
+                  child: const Icon(Icons.remove),
+                ),
+              ],
             ),
           ],
         ),
