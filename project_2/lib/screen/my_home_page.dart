@@ -35,10 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
         //child: Text("นับไปแล้ว $_counter ครั้ง"),
         child: Column(
           children: [
+            const SizedBox(height: 100),
             Text("นับไปแล้ว $_counter ครั้ง", style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blue)),
             const SizedBox(height: 10),
             Row(
               children: [
+                const SizedBox(width: 180),
                 ElevatedButton(
                   onPressed: _counterIncrement,
                   child: const Icon(Icons.add),
