@@ -15,6 +15,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _counterDecrement() {
+    setState(() {
+      if(_counter < 1){
+        _counter = 0;
+      }else{
+        _counter--; //? _count = _counter - 1
+      }
+      
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,13 +33,28 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text("My Increment counter"),
       ),
       body: Center(
-        child: Text("นับไปแล้ว $_counter ครั้ง"),
+        //child: Text("นับไปแล้ว $_counter ครั้ง"),
+        child: Column(
+          children: [
+            Text("นับไปแล้ว $_counter ครั้ง"),
+            ElevatedButton(
+              onPressed: _counterIncrement,
+              child: const Icon(Icons.add),
+            ),
+            ElevatedButton(
+              onPressed: _counterDecrement,
+              child: const Icon(Icons.remove),
+            ),
+          ],
+        ),
       ),
+      /*
       floatingActionButton: FloatingActionButton(
         onPressed: _counterIncrement,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), 
+      */
     );
   }
 }
