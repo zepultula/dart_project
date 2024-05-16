@@ -43,12 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(width: 180),
                 ElevatedButton(
                   onPressed: _counterIncrement,
-                  child: const Icon(Icons.add),
+                  child: const Icon(Icons.add, color: Colors.green),
                 ),
                 
                 ElevatedButton(
                   onPressed: _counterDecrement,
-                  child: const Icon(Icons.remove),
+                  child: const Icon(Icons.remove, color: Colors.red),
                 ),
               ],
             ),
