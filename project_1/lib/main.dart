@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+//? เรียกหน้า My Home page ที่อยู่ใน screen
 import 'package:project_1/screen/my_home_page.dart';
 
 void main() {
@@ -12,7 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'โปรแกรมแรกของฉัน',
+
+      //? theme หลักของแอป
       theme: ThemeData(
         
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
