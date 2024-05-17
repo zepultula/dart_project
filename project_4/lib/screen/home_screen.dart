@@ -44,6 +44,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/login');
+                },
+                child: const Text("ไป login")),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
