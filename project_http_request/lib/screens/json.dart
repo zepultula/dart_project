@@ -1,4 +1,6 @@
+//! ตอนนี้ยังไม่ถูกเรียกใช่งาน
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'dart:convert'; // สำหรับการเข้ารหัสและถอดรหัส JSON
 import 'package:http/http.dart' as http; // สำหรับการทำ HTTP requests
 
@@ -11,6 +13,15 @@ class JsonExample extends StatefulWidget {
 
 class _JsonExampleState extends State<JsonExample> {
   String _response = '';
+
+   Widget _buildRow(String dataRow) {
+    return ListTile(
+      title: Text(
+        dataRow,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
 
   Future<void> sendData() async {
     final Map<String, dynamic> data = {

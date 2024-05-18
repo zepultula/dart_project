@@ -16,6 +16,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late Future<dynamic> futureAlbum;
 
+//? ด้านล่างเป็น Code ที่เชื่อมต่อ API โดยใช้ http.get เพื่อดึงข้อมูลแบบ Get จากนั้นก็ return ค่า response โดยใช้ประเภท Future เทียบกับภาษาอื่นๆ ประเภทข้อมูลนี้ก็คือ CallBack นั้นเองครับ เอาไว้อ่านค่าที่ได้จาก api เมื่อได้ข้อมูลมาแล้ว (ในอนาคต ไม่รู้ตอนไหน เมื่อเสร็จจะบอก ประมาณนั้น) ซึ่งข้างในเป็นค่าประเภท dynamic ที่ได้จาก jsonDecode
 Future<dynamic> fetchAlbum() async {
   final response =
       await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums'));
@@ -27,6 +28,7 @@ Future<dynamic> fetchAlbum() async {
   }
 }
 
+//? ตรงนี้เป็นการสร้าง Widget สำหรับแสดงข้อมูลเป็นแถวๆ
   Widget _buildRow(String dataRow) {
   return ListTile(
     title: Text(
@@ -41,7 +43,7 @@ Future<dynamic> fetchAlbum() async {
     super.initState();
     futureAlbum = fetchAlbum();
   }
- 
+ //?  แสดงผลในรูปแบบ ListView เมื่อได้ข้อมูลจาก API 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
