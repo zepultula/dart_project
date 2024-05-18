@@ -21,13 +21,14 @@ class _MyLoginState extends State<MyLogin> {
 
   void _login() {
     String username = _usernameController.text;
+    String password = _passwordController.text;
     // ตรวจสอบรหัสผ่านหรือดำเนินการใด ๆ ที่จำเป็นก่อนการเข้าสู่ระบบ
 
     // นำทางไปยังหน้า HomePage และส่งค่าชื่อผู้ใช้
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => HomePage(username: username),
+        builder: (context) => HomePage(username: username, password: password),
       ),
     );
   }
