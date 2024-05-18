@@ -13,26 +13,23 @@ class _JsonExampleState extends State<JsonExample> {
   String _response = '';
 
   Future<void> sendData() async {
-    // ข้อมูลที่จะส่งไปยัง PHP
     final Map<String, dynamic> data = {
       'username': 'example_user',
       'password': 'example_password'
     };
 
-    // URL ของ PHP script บนเซิร์ฟเวอร์
-    final String url = 'http://academic.tak.rmutl.ac.th/mobiles/api/api.php';
+    final String url = 'https://jsonplaceholder.typicode.com/albums';
+    // final String url = 'http://10.0.2.15:5001';
+    
 
     try {
-      // ส่งข้อมูลในรูปแบบ JSON โดยใช้ POST request
       final response = await http.post(
         Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
         body: json.encode(data),
       );
 
-      // ตรวจสอบสถานะของคำตอบ
       if (response.statusCode == 200) {
-        // ถอดรหัสข้อมูล JSON ที่ได้รับ
         final responseData = json.decode(response.body);
         setState(() {
           _response = responseData.toString();
@@ -48,18 +45,24 @@ class _JsonExampleState extends State<JsonExample> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        ElevatedButton(
-          onPressed: sendData,
-          child: Text('Send Data to PHP'),
+    return Scaffold(
+      appBar: AppBar(title: Text('JSON Example')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: sendData,
+              child: Text('Send Data to PHP'),
+            ),
+            SizedBox(height: 20),
+            Text(_response),
+          ],
         ),
-        SizedBox(height: 20),
-        Text(_response),
-      ],
+      ),
     );
   }
 }
