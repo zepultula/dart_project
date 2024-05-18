@@ -51,7 +51,7 @@ class _MyLoginState extends State<MyLogin> {
                 height: 20,
               ),
               TextField(
-                controller: _usernameController,
+                controller: _usernameController, //? การเชื่อมโยงตัวแปร usernameController กับ _usernameController
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'ชื่อผู้ใช้งาน',
@@ -61,11 +61,11 @@ class _MyLoginState extends State<MyLogin> {
                 height: 20,
               ),
               TextField(
-                controller: _passwordController,
-                obscureText: _obscureText,
-                obscuringCharacter: '*',
+                controller: _passwordController, //? การเชื่อมโยงตัวแปร passwordController กับ _passwordController
+                obscureText: _obscureText, //? ปิดการแสดงรหัสผ่าน
+                obscuringCharacter: '*', //? การเปลี่ยนรหัสผ่าน
                 decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
+                  border: const OutlineInputBorder(), //? สร้างเส้นขอบ
                   labelText: 'รหัสผ่าน',
                   suffixIcon: IconButton(
                     icon: Icon(
