@@ -26,16 +26,58 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           _message = responseData['message'];
         });
+        if (responseData['status'] == 'success') {
+          _showSuccessDialog(responseData['message']);
+        } else {
+          _showErrorDialog(responseData['message']);
+        }
       } else {
         setState(() {
           _message = 'Error: ${response.statusCode}';
         });
+        _showErrorDialog('Error: ${response.statusCode}');
       }
     } catch (e) {
       setState(() {
         _message = 'Error: $e';
       });
+      _showErrorDialog('Error: $e');
     }
+  }
+  void _showSuccessDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Login Successful'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Login Failed'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
