@@ -1,31 +1,24 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $input = json_decode(file_get_contents('php://input'), true);
-
-    $username = $input['username'] ?? 'unknown';
-    $password = $input['password'] ?? 'unknown';
-
-    $response = [
-        'status' => 'success',
-        'message' => 'Data received',
-        'data' => [
-            'username' => $username,
-            'password' => $password
-        ]
-    ];
+// ตรวจสอบว่าคำขอเป็นแบบ POST หรือไม่
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // รับข้อมูล JSON ที่ส่งมาและแปลงเป็นอาเรย์ PHP
+    $data = json_decode(file_get_contents('php://input'), true);
+    
+    // ตรวจสอบว่าข้อมูลที่ได้รับมี key 'name' หรือไม่
+    if (isset($data['name'])) {
+        $name = $data['name'];
+        $response = array('message' => 'Hello, ' . $name . '!');
+    } else {
+        $response = array('error' => 'Name not provided');
+    }
 
     echo json_encode($response);
 } else {
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Invalid request method'
-    ]);
+    echo json_encode(array('error' => 'Invalid request method'));
 }
 ?>
