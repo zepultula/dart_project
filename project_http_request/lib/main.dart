@@ -57,19 +57,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Flutter PHP JSON Example'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              decoration: InputDecoration(labelText: 'Enter your name'),
-              onSubmitted: (value) {
-                sendDataToPhp(value);
-              },
-            ),
-            SizedBox(height: 20),
-            Text(_response),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                decoration: InputDecoration(labelText: 'Enter your name'),
+                onSubmitted: (value) {
+                  sendDataToPhp(value);
+                },
+              ),
+              SizedBox(height: 20),
+              Text(_response),
+            ],
+          ),
         ),
       ),
     );
