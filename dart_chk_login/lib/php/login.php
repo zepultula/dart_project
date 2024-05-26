@@ -48,6 +48,8 @@ $conn = new mysqli($servername, $db_username, $db_password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+}else{
+    // echo "ok";
 }
 
 // ตรวจสอบการเชื่อมต่อ
@@ -72,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = $conn->real_escape_string($password);
 
         // ตรวจสอบผู้ใช้ในฐานข้อมูล
-        $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'"; // ตรวจสอบชื่อของตารางและฟิลด์
+        $sql = "SELECT * FROM username WHERE username='$username' AND password='$password'"; // ตรวจสอบชื่อของตารางและฟิลด์
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
