@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
       }
     } catch (e) {
       setState(() {
-        _message = 'Error: $e';
+        _message = 'Error: $e' + '\n' + 'Please check your internet connection';
       });
     }
   }
