@@ -1,5 +1,6 @@
 //? หน้าที่สองของ main.dart
 import 'package:flutter/material.dart';
+import 'package:project_1/screen/my_third_page.dart';
 //import 'package:flutter/widgets.dart';
 
 class MySecondPage extends StatelessWidget {
@@ -17,11 +18,16 @@ class MySecondPage extends StatelessWidget {
           children: [
             const Text("รายงานผล"),
             ElevatedButton(onPressed: () {
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const MyThirdPage(),
+                  ),
+              );
             }, 
-            child: const Text("กลับสู่หน้าหลัก"), 
+            child: const Text("หน้าถัดไป"), 
             ),
-          ],
+          ], 
         )
       ),
     );

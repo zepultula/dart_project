@@ -12,16 +12,17 @@ class MyHomePage extends StatelessWidget {
       drawer: const Drawer(
         child: Text("data"),
       ),
-      appBar: AppBar(title: const Text("สวัสดีชาวโลก")),
+      appBar: AppBar(title: const Text("Service Report")),
       body:  Center(
         child: Column(
           children: [
-            const Text("Hello world"),
+            const Text("รายการหลัก"),
+            const Text("รายการย่อย"),
             ElevatedButton(onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const MySecondPage(),
-                  ),
+                  ), 
               );
             }, 
             child: const Text("Click me"), 
