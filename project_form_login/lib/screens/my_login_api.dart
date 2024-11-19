@@ -23,7 +23,10 @@ class _MyLoginState extends State<MyLogin> {
   }
 
   Future<void> _login() async {
-    final url = Uri.parse('http://192.168.1.29/login.php'); // เปลี่ยน URL ให้เป็น URL ของเซิร์ฟเวอร์จริง
+    // final url = Uri.parse('http://192.168.1.29/login.php'); // เปลี่ยน URL ให้เป็น URL ของเซิร์ฟเวอร์จริง
+    final url = Uri.parse(
+        'http://zepultula.3bbddns.com:25102/login.php'); // เปลี่ยน URL ให้เป็น URL ของเซิร์ฟเวอร์จริง
+
     final headers = {"Content-Type": "application/json"};
     final body = jsonEncode({
       "username": _usernameController.text,
@@ -36,7 +39,7 @@ class _MyLoginState extends State<MyLogin> {
         final responseData = jsonDecode(response.body);
         if (responseData['status'] == 'success') {
           _showSuccessDialog(responseData['message']);
-          
+
           //todo ไปยังหน้า HomePage พร้อมส่งข้อมูล
           Navigator.push(
             context,
@@ -99,59 +102,74 @@ class _MyLoginState extends State<MyLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/spa_logo.png',
-                height: 100,
-                width: 100,
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: _usernameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'ชื่อผู้ใช้งาน',
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: _passwordController,
-                obscureText: _obscureText,
-                obscuringCharacter: '*',
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText: 'รหัสผ่าน',
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off,
-                    ),
-                    onPressed: _togglePasswordVisibility,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _login,
-                child: const Text('เข้าสู่ระบบ'),
-              ),
-              if (_message != null) ...[
-                const SizedBox(height: 20),
-                Text(
-                  _message!,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ]
-            ],
+      body: Stack(
+        fit: StackFit.expand, //? ทำให้ Stack ขยายเต็มหน้าจอ
+        children: [
+          //? เพิ่มพื้นหลัง
+          Image.asset(
+            'assets/images/logo_arit_tak.png',
+            fit: BoxFit.cover,
           ),
-        ),
+          //? เพิ่นพื้นหลังอื่นๆ เพื่อทับภาพนี้
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/logo_arit_tak.png',
+                    width: 100,
+                  ),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _usernameController,
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.person),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      labelText: 'ชื่อผู้ใช้งาน',
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: _obscureText,
+                    obscuringCharacter: '*',
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      border: const OutlineInputBorder(),
+                      labelText: 'รหัสผ่าน',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _togglePasswordVisibility,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _login,
+                    child: const Text('เข้าสู่ระบบ'),
+                  ),
+                  if (_message != null) ...[
+                    const SizedBox(height: 20),
+                    Text(
+                      _message!,
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ]
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

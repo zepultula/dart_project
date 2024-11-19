@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_form_login/screens/my_login.dart';
+import 'package:project_form_login/screens/my_login_api.dart';
+import 'package:project_form_login/screens/profile.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -18,6 +19,16 @@ class _HomePageState extends State<HomePage> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      if(index == 3){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder:(context) => ProfilePage(
+              username: widget.username, 
+              password: widget.password),
+          )
+        );
+      }
     });
   }
 
@@ -26,6 +37,18 @@ class _HomePageState extends State<HomePage> {
       context,
       MaterialPageRoute(
         builder: (context) => const MyLogin(),
+      ),
+    );
+  }
+
+  void _viewProfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfilePage(
+          username: widget.username, //? ใช้ widget เพื่อเข้าถึงตัวแปร
+          password: widget.password,
+          ),
       ),
     );
   }
@@ -112,6 +135,10 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: _viewProfile,
+          ),
+          IconButton(
             icon: const Icon(Icons.logout),
             onPressed: _logout,
           ),
@@ -152,30 +179,30 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_to_queue),
+            icon: Icon(Icons.add_to_queue, color: Color.fromARGB(255, 67, 145, 218)),
             label: 'จองคิว',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Color.fromARGB(255, 46, 46, 46)),
+            icon: Icon(Icons.search, color: Color.fromARGB(255, 67, 145, 218)),
             label: 'ค้นหา',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Color.fromARGB(255, 46, 46, 46)),
+            icon: Icon(Icons.home, color: Color.fromARGB(255, 67, 145, 218)),
             label: 'หน้าหลัก',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.summarize, color: Color.fromARGB(255, 46, 46, 46)),
+            icon: Icon(Icons.summarize, color: Color.fromARGB(255, 67, 145, 218)),
             label: 'ตรวจ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.share, color: Color.fromARGB(255, 46, 46, 46)),
+            icon: Icon(Icons.share, color: Color.fromARGB(255, 67, 145, 218)),
             label: 'แบ่งปัน',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.red, // สีเมื่อเลือก
         unselectedItemColor: const Color.fromARGB(255, 46, 46, 46), // สีเมื่อไม่ถูกเลือก
-        onTap: _onItemTapped,
+        onTap: _onItemTapped, //? เมื่อมีการเรียก tap มันจะดูว่าเป็น index ที่เ่าไร มันจะไปเปรียบเทียบฟังก์ชั่นเพื่อเรียกใช้งาน
       ),
     );
   }
